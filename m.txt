@@ -1,0 +1,9 @@
+create table Employees( emp_id number primary key, emp_name varchar2(20), 
+emp_email varchar2(20), emp_pass varchar2(20),
+ emp_desg varchar2(20) , dept_id int, foreign key (dept_id) references Departments(dept_id), emp_status number  ,
+ emp_startdate date);
+
+
+create sequence Employees_seq 
+start with 100 increment by 1
+nocache nocycle;
