@@ -7,3 +7,63 @@ emp_email varchar2(20), emp_pass varchar2(20),
 create sequence Employees_seq 
 start with 100 increment by 1
 nocache nocycle;
+
+
+create table Departments(dept_id number primary key, dept_name varchar2(20));
+
+
+create table MOM (mom_id number primary key, mom_name varchar2(20) , 
+mom_c_id number , foreign key (mom_c_id) references Employees(emp_id), mom_s_date timestamp, mom_e_date timestamp , 
+mom_pd varchar(255) , mom_disc_t varchar(255)); 
+
+
+
+create table Participants( emp_id number, foreign key(emp_id) references Employees(emp_id), mom_id number ,
+ meeting_time timestamp primary key, attendance number); 
+
+
+
+create table EmpHistory(emp_id number, foreign key(emp_id) references Employees(emp_id), 
+emp_enddate date);
+
+
+
+create table Action_Status(action_id number, foreign key(action_id) references Actions(action_id), 
+action_status varchar2(20), 
+action_timestamp timestamp primary key);
+
+
+
+create table Actions(action_id number primary key, 
+action_name varchar2(255), 
+mom_id number, foreign key(mom_id) references MOM(mom_id), 
+action_due date);
+
+
+
+create table Action_Owners(emp_id number, foreign key(emp_id) references Employees(emp_id), 
+action_id number, foreign key(action_id) references Actions(action_id));
+
+
+
+create sequence Departments_seq
+start with 500 increment by 1
+nocache nocycle;
+
+
+
+create sequence MOM_seq
+start with 10 increment by 1
+nocache nocycle;
+
+
+
+create sequence Actions_seq
+start with 50
+increment by 1
+nocache
+nocycle;
+
+
+
+
